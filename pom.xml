@@ -7,6 +7,20 @@
   <version>1.0-SNAPSHOT</version>
   <name>training-app</name>
   <url>http://maven.apache.org</url>
+
+  <distributionManagement>
+  <repository>
+    <id>nexus</id>
+    <name>Releases</name>
+    <url>http://localhost:8081/repository/maven-releases</url>
+  </repository>
+  <snapshotRepository>
+    <id>nexus</id>
+    <name>Snapshot</name>
+    <url>http://localhost:8081/repository/maven-snapshots</url>
+  </snapshotRepository>
+</distributionManagement>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,37 +28,11 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-  <groupId>mysql</groupId>
-  <artifactId>mysql-connector-java</artifactId>
-  <version>5.1.35</version>
-</dependency>
   </dependencies>
+
   <build>
     <plugins>
- <plugin>
-  <artifactId>maven-assembly-plugin</artifactId>
-  <configuration>
-    <archive>
-      <manifest>
-        <mainClass>com.mycompany.app.App</mainClass>
-      </manifest>
-    </archive>
-    <descriptorRefs>
-      <descriptorRef>jar-with-dependencies</descriptorRef>
-    </descriptorRefs>
-  </configuration>
-  <executions>
-    <execution>
-      <id>make-assembly</id> <!-- this is used for inheritance merges -->
-      <phase>package</phase> <!-- bind to the packaging phase -->
-      <goals>
-        <goal>single</goal>
-      </goals>
-    </execution>
-  </executions>
-</plugin>
-      <plugin>
+    <plugin>
         <!-- Build an executable JAR -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -59,6 +47,7 @@
           </archive>
         </configuration>
       </plugin>
-    </plugins>
-  </build>
+      </plugins>
+      
+      </build>
 </project>
